@@ -1,0 +1,408 @@
+Archive member included because of file (symbol)
+
+c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_exit.o)
+                              c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn4313.o (exit)
+c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_clear_bss.o)
+                              ATtiny4313-I2c-MCP23017.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+data                0x1               ATtiny4313-I2c-MCP23017.o
+device              0x3               ATtiny4313-I2c-MCP23017.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00002000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn4313.o
+LOAD ATtiny4313-I2c-MCP23017.o
+LOAD i2cmaster.o
+LOAD mcp23017.o
+LOAD c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a
+LOAD c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr25\libc.a
+LOAD c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0x22a
+ *(.vectors)
+ .vectors       0x00000000       0x2a c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn4313.o
+                0x00000000                __vector_default
+                0x00000000                __vectors
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+                0x0000002a                . = ALIGN (0x2)
+                0x0000002a                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x0000002a        0x0 linker stubs
+ *(.trampolines*)
+                0x0000002a                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x0000002a                __ctors_start = .
+ *(.ctors)
+                0x0000002a                __ctors_end = .
+                0x0000002a                __dtors_start = .
+ *(.dtors)
+                0x0000002a                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x0000002a        0x0 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn4313.o
+                0x0000002a                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x0000002a        0xc c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn4313.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000036       0x10 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_clear_bss.o)
+                0x00000036                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000046        0x4 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn4313.o
+ *(.init9)
+ *(.text)
+ .text          0x0000004a        0x2 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn4313.o
+                0x0000004a                __vector_1
+                0x0000004a                __vector_12
+                0x0000004a                __bad_interrupt
+                0x0000004a                __vector_6
+                0x0000004a                __vector_3
+                0x0000004a                __vector_11
+                0x0000004a                __vector_13
+                0x0000004a                __vector_17
+                0x0000004a                __vector_19
+                0x0000004a                __vector_7
+                0x0000004a                __vector_5
+                0x0000004a                __vector_4
+                0x0000004a                __vector_9
+                0x0000004a                __vector_2
+                0x0000004a                __vector_15
+                0x0000004a                __vector_8
+                0x0000004a                __vector_14
+                0x0000004a                __vector_10
+                0x0000004a                __vector_16
+                0x0000004a                __vector_18
+                0x0000004a                __vector_20
+ .text          0x0000004c       0x42 ATtiny4313-I2c-MCP23017.o
+                0x0000004c                main
+ .text          0x0000008e       0xce i2cmaster.o
+                0x0000009e                i2c_init
+                0x000000a8                i2c_start
+                0x000000b0                i2c_rep_start
+                0x000000c4                i2c_start_wait
+                0x000000d8                i2c_stop
+                0x000000e8                i2c_write
+                0x00000120                i2c_readNak
+                0x00000124                i2c_readAck
+                0x00000126                i2c_read
+ .text          0x0000015c       0xca mcp23017.o
+                0x0000015c                mcp23017_write_register
+                0x00000188                mcp23017_read_register
+                0x000001c2                mcp23017_write_word
+                0x000001fe                mcp23017_write
+                0x00000204                mcp23017_init
+ .text          0x00000226        0x0 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_exit.o)
+ .text          0x00000226        0x0 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_clear_bss.o)
+                0x00000226                . = ALIGN (0x2)
+ *(.text.*)
+ .text.libgcc   0x00000226        0x0 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_exit.o)
+ .text.libgcc   0x00000226        0x0 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_clear_bss.o)
+                0x00000226                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x00000226        0x0 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_exit.o)
+                0x00000226                _exit
+                0x00000226                exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x00000226        0x4 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_exit.o)
+ *(.fini0)
+                0x0000022a                _etext = .
+
+.data           0x00800060        0x0 load address 0x0000022a
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn4313.o
+ .data          0x00800060        0x0 ATtiny4313-I2c-MCP23017.o
+ .data          0x00800060        0x0 i2cmaster.o
+ .data          0x00800060        0x0 mcp23017.o
+ .data          0x00800060        0x0 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_exit.o)
+ .data          0x00800060        0x0 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_clear_bss.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800060                . = ALIGN (0x2)
+                0x00800060                _edata = .
+                0x00800060                PROVIDE (__data_end, .)
+
+.bss            0x00800060        0x4
+                0x00800060                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800060        0x0 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn4313.o
+ .bss           0x00800060        0x0 ATtiny4313-I2c-MCP23017.o
+ .bss           0x00800060        0x0 i2cmaster.o
+ .bss           0x00800060        0x0 mcp23017.o
+ .bss           0x00800060        0x0 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_exit.o)
+ .bss           0x00800060        0x0 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr25\libgcc.a(_clear_bss.o)
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x00800060        0x4 ATtiny4313-I2c-MCP23017.o
+                0x00800060                data
+                0x00800061                device
+                0x00800064                PROVIDE (__bss_end, .)
+                0x0000022a                __data_load_start = LOADADDR (.data)
+                0x0000022a                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800064        0x0
+                0x00800064                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800064                PROVIDE (__noinit_end, .)
+                0x00800064                _end = .
+                0x00800064                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab           0x00000000      0x6e4
+ *(.stab)
+ .stab          0x00000000      0x6cc c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn4313.o
+ .stab          0x000006cc       0x18 i2cmaster.o
+                                 0x24 (size before relaxing)
+
+.stabstr        0x00000000       0x91
+ *(.stabstr)
+ .stabstr       0x00000000       0x91 c:/program files/atmel/avr studio 5.0/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr25/crttn4313.o
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0x60
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 ATtiny4313-I2c-MCP23017.o
+ .debug_aranges
+                0x00000020       0x20 i2cmaster.o
+ .debug_aranges
+                0x00000040       0x20 mcp23017.o
+
+.debug_pubnames
+                0x00000000       0xb5
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0x2f ATtiny4313-I2c-MCP23017.o
+ .debug_pubnames
+                0x0000002f       0x86 mcp23017.o
+
+.debug_info     0x00000000      0x480
+ *(.debug_info)
+ .debug_info    0x00000000      0x1db ATtiny4313-I2c-MCP23017.o
+ .debug_info    0x000001db       0xa9 i2cmaster.o
+ .debug_info    0x00000284      0x1fc mcp23017.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0x23e
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x142 ATtiny4313-I2c-MCP23017.o
+ .debug_abbrev  0x00000142       0x14 i2cmaster.o
+ .debug_abbrev  0x00000156       0xe8 mcp23017.o
+
+.debug_line     0x00000000      0x4be
+ *(.debug_line)
+ .debug_line    0x00000000      0x1f3 ATtiny4313-I2c-MCP23017.o
+ .debug_line    0x000001f3       0xb2 i2cmaster.o
+ .debug_line    0x000002a5      0x219 mcp23017.o
+
+.debug_frame    0x00000000       0x80
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x20 ATtiny4313-I2c-MCP23017.o
+ .debug_frame   0x00000020       0x60 mcp23017.o
+
+.debug_str      0x00000000      0x1eb
+ *(.debug_str)
+ .debug_str     0x00000000      0x173 ATtiny4313-I2c-MCP23017.o
+                                0x1ac (size before relaxing)
+ .debug_str     0x00000173       0x78 mcp23017.o
+                                0x193 (size before relaxing)
+
+.debug_loc      0x00000000      0x149
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x149 mcp23017.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(ATtiny4313-I2c-MCP23017.elf elf32-avr)
+LOAD linker stubs
+
+.debug_pubtypes
+                0x00000000       0x84
+ .debug_pubtypes
+                0x00000000       0x49 ATtiny4313-I2c-MCP23017.o
+ .debug_pubtypes
+                0x00000049       0x3b mcp23017.o
