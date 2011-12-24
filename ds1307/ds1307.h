@@ -25,6 +25,6 @@ typedef struct {
 
 void ds1307_init();
 void ds1307_read_date(DS1307Date *date);
-
+void ds1307_set_military_mode();
 
 #endif /* DS1307_H_ */
