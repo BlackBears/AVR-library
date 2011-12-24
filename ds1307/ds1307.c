@@ -27,7 +27,7 @@
 #define DS1307_CONTROL_RS0  (1<<0)
 #define DS1307_CH	(1<<7)
 
-#define DS1307_ADDRESS  0xD0
+#define DS1307_ADDRESS  0xD0    //  the device address
 
 //
 //  Function prototypes
@@ -79,6 +79,9 @@ void ds1307_set_military_mode()
 	i2c_stop;
 }
 
+//
+//  Converts raw data from BCD to decimal
+//
 uint8_t _ds1307_bcd_2_dec(uint8_t bcd)
 {
     uint8_t dec = 10 * (bcd>>4);
