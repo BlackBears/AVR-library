@@ -14,7 +14,6 @@
 void mcp23017_init(MCP23017 *obj, uint8_t address)
 {
 	obj->address = MCP23017_BASE_ADDRESS + address;
-	PORTD = obj->address;
 	
 	//	set addressing style
 	mcp23017_write_register(obj,MCP23017_IOCON,0x00);
