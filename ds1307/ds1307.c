@@ -62,9 +62,6 @@ void ds1307_read_date(DS1307Date *date)
 void ds1307_set_military_mode()
 {
 	//	read the current minutes
-	//	Clear the CH bit of the register at 0x00 to
-	//	enable the oscillator
-	//	read the contents
 	i2c_start_wait(DS1307_ADDRESS + I2C_WRITE);
 	i2c_write( DS1307_MINUTES );
 	i2c_rep_start(DS1307_ADDRESS + I2C_READ);
@@ -89,6 +86,11 @@ uint8_t _ds1307_bcd_2_dec(uint8_t bcd)
     return dec;
 }
 
+//
+//  At power-on, the CH bit of register 0x00 is set of 1
+//  preventing the oscillator from running.  Therefore, at
+//  init, we clear the CH bit
+//
 void _ds1307_start_oscillator()
 {
 	//	Clear the CH bit of the register at 0x00 to
