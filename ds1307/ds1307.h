@@ -15,6 +15,12 @@
 #include "global.h"     //  should define F_CPU here
 #include <inttypes.h>   //  if we wish to use standard integer types
 
+typedef enum {
+	MeridianAM,
+	MeridianPM
+	MeridianMilitary
+} Meridian;
+
 /** \struct DS1307
  *  \brief  Defines data structure for date/time
  */
@@ -26,6 +32,7 @@ typedef struct {
     uint8_t date;
     uint8_t month;
     uint8_t year;
+    Meridian meridian;
 } DS1307Date;
 
 /** \fn         void ds1307_init()

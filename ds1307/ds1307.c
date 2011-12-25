@@ -42,14 +42,16 @@ void ds1307_init()
 }
 void ds1307_read_date(DS1307Date *date)
 {
-    i2c_start_wait( DS1307_ADDRESS + I2C_WRITE );
+	i2c_start_wait( DS1307_ADDRESS + I2C_WRITE );
     i2c_write( DS1307_SECONDS );
-    //i2c_stop();
     
     //  read registers sequentially
     i2c_rep_start( DS1307_ADDRESS + I2C_READ );
     date->second = _ds1307_bcd_2_dec( i2c_readAck() & 0x7F );
     date->minute = _ds1307_bcd_2_dec( i2c_readAck() );
+	
+	u08 temp_hour = i2c_readAck()
+	
     date->hour = _ds1307_bcd_2_dec( i2c_readAck() );
     date->day = _ds1307_bcd_2_dec( i2c_readAck() );
     date->date = _ds1307_bcd_2_dec( i2c_readAck() );
@@ -57,6 +59,22 @@ void ds1307_read_date(DS1307Date *date)
     date->year = _ds1307_bcd_2_dec( i2c_readNak() );
     
     i2c_stop();
+	
+	//	process the hour
+	if( CHECKBIT(temp_hour,6) )
+	{
+		//	if bit 6 of hour is high we need to find the AM/PM
+		date->meridian = ( CHECKBIT(temp_hour),5 )?MeridianPM:MeridianAM;
+		//	mask the upper 3 bits
+		date->hour = _ds1307_bcd_2_dec( temp_hour & 0b00011111 );
+	}
+	else
+	{
+		date->meridian = MeridianMilitary;
+		//	mask the upper 2 bits, b/c we need bit 5 to represent the full range of 
+		//	the upper bcd digit (we can't represent 2n in bcd without bit 5)
+		date->hour = _ds1307_bcd_2_dec( temp_hour & 0b00111111 );
+	}
 }
 
 void ds1307_set_military_mode()
