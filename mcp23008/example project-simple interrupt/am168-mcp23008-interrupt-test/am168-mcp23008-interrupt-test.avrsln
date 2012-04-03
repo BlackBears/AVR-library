@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# AvrStudio Solution File, Format Version 11.00
+Project("{D1100916-62DA-4D80-A9B4-55A1E7CCEEB3}") = "am168-mcp23008-interrupt-test", "am168-mcp23008-interrupt-test\am168-mcp23008-interrupt-test.avrgccproj", "{5DDA1433-8971-4F61-B4DC-440DD95C6EEF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DDA1433-8971-4F61-B4DC-440DD95C6EEF}.Debug|AVR.ActiveCfg = Debug|AVR
+		{5DDA1433-8971-4F61-B4DC-440DD95C6EEF}.Debug|AVR.Build.0 = Debug|AVR
+		{5DDA1433-8971-4F61-B4DC-440DD95C6EEF}.Release|AVR.ActiveCfg = Release|AVR
+		{5DDA1433-8971-4F61-B4DC-440DD95C6EEF}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
