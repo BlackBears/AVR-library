@@ -1,0 +1,1513 @@
+
+am168-mcp23008-interrupt-test.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000007d6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          0000005a  00800100  00800100  0000084a  2**0
+                  ALLOC
+  2 .stab         000006cc  00000000  00000000  0000084c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000085  00000000  00000000  00000f18  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_aranges 00000060  00000000  00000000  00000f9d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_pubnames 00000248  00000000  00000000  00000ffd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000a16  00000000  00000000  00001245  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000452  00000000  00000000  00001c5b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000a02  00000000  00000000  000020ad  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000001c0  00000000  00000000  00002ab0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000004ba  00000000  00000000  00002c70  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000454  00000000  00000000  0000312a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_pubtypes 000000b4  00000000  00000000  0000357e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 56 00 	jmp	0xac	; 0xac <__vector_2>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d4 e0       	ldi	r29, 0x04	; 4
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	aa 35       	cpi	r26, 0x5A	; 90
+  80:	b1 07       	cpc	r27, r17
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 7f 00 	call	0xfe	; 0xfe <main>
+  88:	0c 94 e9 03 	jmp	0x7d2	; 0x7d2 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <_flash>:
+	u08 temp = mcp23008_read_register(&gpio,MCP23008_GPIO);
+	
+}
+
+void _flash()
+{
+  90:	86 e0       	ldi	r24, 0x06	; 6
+	for( u08 i = 0; i < 6; i++) {
+		PORTD ^= (1<<PD5);
+  92:	20 e2       	ldi	r18, 0x20	; 32
+  94:	9b b1       	in	r25, 0x0b	; 11
+  96:	92 27       	eor	r25, r18
+  98:	9b b9       	out	0x0b, r25	; 11
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  9a:	e3 ed       	ldi	r30, 0xD3	; 211
+  9c:	f0 e3       	ldi	r31, 0x30	; 48
+  9e:	31 97       	sbiw	r30, 0x01	; 1
+  a0:	f1 f7       	brne	.-4      	; 0x9e <_flash+0xe>
+  a2:	00 c0       	rjmp	.+0      	; 0xa4 <_flash+0x14>
+  a4:	00 00       	nop
+  a6:	81 50       	subi	r24, 0x01	; 1
+	
+}
+
+void _flash()
+{
+	for( u08 i = 0; i < 6; i++) {
+  a8:	a9 f7       	brne	.-22     	; 0x94 <_flash+0x4>
+		PORTD ^= (1<<PD5);
+		_delay_ms(50);
+	}
+}
+  aa:	08 95       	ret
+
+000000ac <__vector_2>:
+		_delay_ms(2000);
+		
+	}
+}
+
+ISR(INT1_vect) {
+  ac:	1f 92       	push	r1
+  ae:	0f 92       	push	r0
+  b0:	0f b6       	in	r0, 0x3f	; 63
+  b2:	0f 92       	push	r0
+  b4:	11 24       	eor	r1, r1
+  b6:	2f 93       	push	r18
+  b8:	3f 93       	push	r19
+  ba:	4f 93       	push	r20
+  bc:	5f 93       	push	r21
+  be:	6f 93       	push	r22
+  c0:	7f 93       	push	r23
+  c2:	8f 93       	push	r24
+  c4:	9f 93       	push	r25
+  c6:	af 93       	push	r26
+  c8:	bf 93       	push	r27
+  ca:	ef 93       	push	r30
+  cc:	ff 93       	push	r31
+	_flash();	
+  ce:	0e 94 48 00 	call	0x90	; 0x90 <_flash>
+	u08 temp = mcp23008_read_register(&gpio,MCP23008_GPIO);
+  d2:	86 e5       	ldi	r24, 0x56	; 86
+  d4:	91 e0       	ldi	r25, 0x01	; 1
+  d6:	69 e0       	ldi	r22, 0x09	; 9
+  d8:	0e 94 92 03 	call	0x724	; 0x724 <mcp23008_read_register>
+	
+}
+  dc:	ff 91       	pop	r31
+  de:	ef 91       	pop	r30
+  e0:	bf 91       	pop	r27
+  e2:	af 91       	pop	r26
+  e4:	9f 91       	pop	r25
+  e6:	8f 91       	pop	r24
+  e8:	7f 91       	pop	r23
+  ea:	6f 91       	pop	r22
+  ec:	5f 91       	pop	r21
+  ee:	4f 91       	pop	r20
+  f0:	3f 91       	pop	r19
+  f2:	2f 91       	pop	r18
+  f4:	0f 90       	pop	r0
+  f6:	0f be       	out	0x3f, r0	; 63
+  f8:	0f 90       	pop	r0
+  fa:	1f 90       	pop	r1
+  fc:	18 95       	reti
+
+000000fe <main>:
+
+void _flash();
+
+int main(void)
+{
+	DDRD |= (1<<PD5) | (1<<PD6);
+  fe:	8a b1       	in	r24, 0x0a	; 10
+ 100:	80 66       	ori	r24, 0x60	; 96
+ 102:	8a b9       	out	0x0a, r24	; 10
+	PORTD |= (1<<PD5) | (1<<PD6);
+ 104:	8b b1       	in	r24, 0x0b	; 11
+ 106:	80 66       	ori	r24, 0x60	; 96
+ 108:	8b b9       	out	0x0b, r24	; 11
+	
+	_flash();
+ 10a:	0e 94 48 00 	call	0x90	; 0x90 <_flash>
+ 10e:	8f e3       	ldi	r24, 0x3F	; 63
+ 110:	9d e0       	ldi	r25, 0x0D	; 13
+ 112:	a3 e0       	ldi	r26, 0x03	; 3
+ 114:	81 50       	subi	r24, 0x01	; 1
+ 116:	90 40       	sbci	r25, 0x00	; 0
+ 118:	a0 40       	sbci	r26, 0x00	; 0
+ 11a:	e1 f7       	brne	.-8      	; 0x114 <main+0x16>
+ 11c:	00 c0       	rjmp	.+0      	; 0x11e <main+0x20>
+ 11e:	00 00       	nop
+	_delay_ms(1000);
+	
+	mcp23008_init(&gpio,0b000);
+ 120:	86 e5       	ldi	r24, 0x56	; 86
+ 122:	91 e0       	ldi	r25, 0x01	; 1
+ 124:	60 e0       	ldi	r22, 0x00	; 0
+ 126:	0e 94 6b 03 	call	0x6d6	; 0x6d6 <mcp23008_init>
+	
+	mcp23008_write_register(&gpio, MCP23008_IODIR, 0x80);	//	all pins on the MCP23008 are input
+ 12a:	86 e5       	ldi	r24, 0x56	; 86
+ 12c:	91 e0       	ldi	r25, 0x01	; 1
+ 12e:	60 e0       	ldi	r22, 0x00	; 0
+ 130:	40 e8       	ldi	r20, 0x80	; 128
+ 132:	0e 94 80 03 	call	0x700	; 0x700 <mcp23008_write_register>
+	mcp23008_write_register(&gpio,MCP23008_IPOL,0x00);		//	input polarity
+ 136:	86 e5       	ldi	r24, 0x56	; 86
+ 138:	91 e0       	ldi	r25, 0x01	; 1
+ 13a:	61 e0       	ldi	r22, 0x01	; 1
+ 13c:	40 e0       	ldi	r20, 0x00	; 0
+ 13e:	0e 94 80 03 	call	0x700	; 0x700 <mcp23008_write_register>
+	mcp23008_write_register(&gpio, MCP23008_GPINTEN, 0x80);	//	GPIO7 enabled for interrupt
+ 142:	86 e5       	ldi	r24, 0x56	; 86
+ 144:	91 e0       	ldi	r25, 0x01	; 1
+ 146:	62 e0       	ldi	r22, 0x02	; 2
+ 148:	40 e8       	ldi	r20, 0x80	; 128
+ 14a:	0e 94 80 03 	call	0x700	; 0x700 <mcp23008_write_register>
+	mcp23008_write_register(&gpio, MCP23008_INTCON, 0x80);	//	interrupt difference from DEFVAL
+ 14e:	86 e5       	ldi	r24, 0x56	; 86
+ 150:	91 e0       	ldi	r25, 0x01	; 1
+ 152:	64 e0       	ldi	r22, 0x04	; 4
+ 154:	40 e8       	ldi	r20, 0x80	; 128
+ 156:	0e 94 80 03 	call	0x700	; 0x700 <mcp23008_write_register>
+	mcp23008_write_register(&gpio, MCP23008_DEFVAL, 0x80);	//	values other than 0xFF trigger interrupt
+ 15a:	86 e5       	ldi	r24, 0x56	; 86
+ 15c:	91 e0       	ldi	r25, 0x01	; 1
+ 15e:	63 e0       	ldi	r22, 0x03	; 3
+ 160:	40 e8       	ldi	r20, 0x80	; 128
+ 162:	0e 94 80 03 	call	0x700	; 0x700 <mcp23008_write_register>
+	mcp23008_write_register(&gpio, MCP23008_IOCON, 0b00101000);
+ 166:	86 e5       	ldi	r24, 0x56	; 86
+ 168:	91 e0       	ldi	r25, 0x01	; 1
+ 16a:	65 e0       	ldi	r22, 0x05	; 5
+ 16c:	48 e2       	ldi	r20, 0x28	; 40
+ 16e:	0e 94 80 03 	call	0x700	; 0x700 <mcp23008_write_register>
+	
+	mcp23008_write_register(&gpio,MCP23008_GPPU, 0x01);
+ 172:	86 e5       	ldi	r24, 0x56	; 86
+ 174:	91 e0       	ldi	r25, 0x01	; 1
+ 176:	66 e0       	ldi	r22, 0x06	; 6
+ 178:	41 e0       	ldi	r20, 0x01	; 1
+ 17a:	0e 94 80 03 	call	0x700	; 0x700 <mcp23008_write_register>
+	
+	//	install interrupt INT1
+	EICRA |= (1<<ISC11);	//	falling edge on INT1 triggers interrupt
+ 17e:	80 91 69 00 	lds	r24, 0x0069
+ 182:	88 60       	ori	r24, 0x08	; 8
+ 184:	80 93 69 00 	sts	0x0069, r24
+	EIMSK |= (1<<INT1);		//	enable INT1
+ 188:	e9 9a       	sbi	0x1d, 1	; 29
+	sei();
+ 18a:	78 94       	sei
+	
+	u08 temp = mcp23008_read_register(&gpio,MCP23008_GPIO);
+ 18c:	86 e5       	ldi	r24, 0x56	; 86
+ 18e:	91 e0       	ldi	r25, 0x01	; 1
+ 190:	69 e0       	ldi	r22, 0x09	; 9
+ 192:	0e 94 92 03 	call	0x724	; 0x724 <mcp23008_read_register>
+	for(;;) {
+		//	every 2 seconds, drive PD6 low for 10 ms
+		PORTD &= ~(1<<PD6);
+ 196:	5e 98       	cbi	0x0b, 6	; 11
+ 198:	a3 ed       	ldi	r26, 0xD3	; 211
+ 19a:	b0 e3       	ldi	r27, 0x30	; 48
+ 19c:	11 97       	sbiw	r26, 0x01	; 1
+ 19e:	f1 f7       	brne	.-4      	; 0x19c <main+0x9e>
+ 1a0:	00 c0       	rjmp	.+0      	; 0x1a2 <main+0xa4>
+ 1a2:	00 00       	nop
+		_delay_ms(50);
+		PORTD |= (1<<PD6);
+ 1a4:	5e 9a       	sbi	0x0b, 6	; 11
+		u08 temp = mcp23008_read_register(&gpio,MCP23008_GPIO);
+ 1a6:	86 e5       	ldi	r24, 0x56	; 86
+ 1a8:	91 e0       	ldi	r25, 0x01	; 1
+ 1aa:	69 e0       	ldi	r22, 0x09	; 9
+ 1ac:	0e 94 92 03 	call	0x724	; 0x724 <mcp23008_read_register>
+ 1b0:	8f e7       	ldi	r24, 0x7F	; 127
+ 1b2:	9a e1       	ldi	r25, 0x1A	; 26
+ 1b4:	a6 e0       	ldi	r26, 0x06	; 6
+ 1b6:	81 50       	subi	r24, 0x01	; 1
+ 1b8:	90 40       	sbci	r25, 0x00	; 0
+ 1ba:	a0 40       	sbci	r26, 0x00	; 0
+ 1bc:	e1 f7       	brne	.-8      	; 0x1b6 <main+0xb8>
+ 1be:	00 c0       	rjmp	.+0      	; 0x1c0 <main+0xc2>
+ 1c0:	00 00       	nop
+ 1c2:	e9 cf       	rjmp	.-46     	; 0x196 <main+0x98>
+
+000001c4 <i2cSetBitrate>:
+	// SCL freq = F_CPU/(16+2*TWBR))
+	#ifdef TWPS0
+		// for processors with additional bitrate division (mega128)
+		// SCL freq = F_CPU/(16+2*TWBR*4^TWPS)
+		// set TWPS to zero
+		cbi(TWSR, TWPS0);
+ 1c4:	20 91 b9 00 	lds	r18, 0x00B9
+ 1c8:	2e 7f       	andi	r18, 0xFE	; 254
+ 1ca:	20 93 b9 00 	sts	0x00B9, r18
+		cbi(TWSR, TWPS1);
+ 1ce:	20 91 b9 00 	lds	r18, 0x00B9
+ 1d2:	2d 7f       	andi	r18, 0xFD	; 253
+ 1d4:	20 93 b9 00 	sts	0x00B9, r18
+	#endif
+	// calculate bitrate division	
+	bitrate_div = ((F_CPU/1000l)/bitrateKHz);
+ 1d8:	9c 01       	movw	r18, r24
+ 1da:	40 e0       	ldi	r20, 0x00	; 0
+ 1dc:	50 e0       	ldi	r21, 0x00	; 0
+ 1de:	68 ee       	ldi	r22, 0xE8	; 232
+ 1e0:	73 e0       	ldi	r23, 0x03	; 3
+ 1e2:	80 e0       	ldi	r24, 0x00	; 0
+ 1e4:	90 e0       	ldi	r25, 0x00	; 0
+ 1e6:	0e 94 ac 03 	call	0x758	; 0x758 <__divmodsi4>
+	if(bitrate_div >= 16)
+ 1ea:	20 31       	cpi	r18, 0x10	; 16
+ 1ec:	28 f0       	brcs	.+10     	; 0x1f8 <i2cSetBitrate+0x34>
+		bitrate_div = (bitrate_div-16)/2;
+ 1ee:	30 e0       	ldi	r19, 0x00	; 0
+ 1f0:	20 51       	subi	r18, 0x10	; 16
+ 1f2:	30 40       	sbci	r19, 0x00	; 0
+ 1f4:	35 95       	asr	r19
+ 1f6:	27 95       	ror	r18
+	outb(TWBR, bitrate_div);
+ 1f8:	20 93 b8 00 	sts	0x00B8, r18
+}
+ 1fc:	08 95       	ret
+
+000001fe <i2cInit>:
+// functions
+void i2cInit(void)
+{
+	// set pull-up resistors on I2C bus pins
+	// TODO: should #ifdef these
+	sbi(PORTC, 0);	// i2c SCL on ATmega163,323,16,32,etc
+ 1fe:	40 9a       	sbi	0x08, 0	; 8
+	sbi(PORTC, 1);	// i2c SDA on ATmega163,323,16,32,etc
+ 200:	41 9a       	sbi	0x08, 1	; 8
+	sbi(PORTD, 0);	// i2c SCL on ATmega128,64
+ 202:	58 9a       	sbi	0x0b, 0	; 11
+	sbi(PORTD, 1);	// i2c SDA on ATmega128,64
+ 204:	59 9a       	sbi	0x0b, 1	; 11
+
+	// clear SlaveReceive and SlaveTransmit handler to null
+	i2cSlaveReceive = 0;
+ 206:	10 92 47 01 	sts	0x0147, r1
+ 20a:	10 92 46 01 	sts	0x0146, r1
+	i2cSlaveTransmit = 0;
+ 20e:	10 92 49 01 	sts	0x0149, r1
+ 212:	10 92 48 01 	sts	0x0148, r1
+	// set i2c bit rate to 100KHz
+	i2cSetBitrate(100);
+ 216:	84 e6       	ldi	r24, 0x64	; 100
+ 218:	90 e0       	ldi	r25, 0x00	; 0
+ 21a:	0e 94 e2 00 	call	0x1c4	; 0x1c4 <i2cSetBitrate>
+	// enable TWI (two-wire interface)
+	sbi(TWCR, TWEN);
+ 21e:	ec eb       	ldi	r30, 0xBC	; 188
+ 220:	f0 e0       	ldi	r31, 0x00	; 0
+ 222:	80 81       	ld	r24, Z
+ 224:	84 60       	ori	r24, 0x04	; 4
+ 226:	80 83       	st	Z, r24
+	// set state
+	I2cState = I2C_IDLE;
+ 228:	10 92 00 01 	sts	0x0100, r1
+	// enable TWI interrupt and slave address ACK
+	sbi(TWCR, TWIE);
+ 22c:	80 81       	ld	r24, Z
+ 22e:	81 60       	ori	r24, 0x01	; 1
+ 230:	80 83       	st	Z, r24
+	sbi(TWCR, TWEA);
+ 232:	80 81       	ld	r24, Z
+ 234:	80 64       	ori	r24, 0x40	; 64
+ 236:	80 83       	st	Z, r24
+	//outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT)|BV(TWEA));
+	// enable interrupts
+	sei();
+ 238:	78 94       	sei
+}
+ 23a:	08 95       	ret
+
+0000023c <i2cSetLocalDeviceAddr>:
+}
+
+void i2cSetLocalDeviceAddr(u08 deviceAddr, u08 genCallEn)
+{
+	// set local device address (used in slave mode only)
+	outb(TWAR, ((deviceAddr&0xFE) | (genCallEn?1:0)) );
+ 23c:	91 e0       	ldi	r25, 0x01	; 1
+ 23e:	66 23       	and	r22, r22
+ 240:	09 f4       	brne	.+2      	; 0x244 <i2cSetLocalDeviceAddr+0x8>
+ 242:	90 e0       	ldi	r25, 0x00	; 0
+ 244:	8e 7f       	andi	r24, 0xFE	; 254
+ 246:	89 2b       	or	r24, r25
+ 248:	80 93 ba 00 	sts	0x00BA, r24
+}
+ 24c:	08 95       	ret
+
+0000024e <i2cSetSlaveReceiveHandler>:
+
+void i2cSetSlaveReceiveHandler(void (*i2cSlaveRx_func)(u08 receiveDataLength, u08* recieveData))
+{
+	i2cSlaveReceive = i2cSlaveRx_func;
+ 24e:	90 93 47 01 	sts	0x0147, r25
+ 252:	80 93 46 01 	sts	0x0146, r24
+}
+ 256:	08 95       	ret
+
+00000258 <i2cSetSlaveTransmitHandler>:
+
+void i2cSetSlaveTransmitHandler(u08 (*i2cSlaveTx_func)(u08 transmitDataLengthMax, u08* transmitData))
+{
+	i2cSlaveTransmit = i2cSlaveTx_func;
+ 258:	90 93 49 01 	sts	0x0149, r25
+ 25c:	80 93 48 01 	sts	0x0148, r24
+}
+ 260:	08 95       	ret
+
+00000262 <i2cSendStart>:
+
+inline void i2cSendStart(void)
+{
+	// send start condition
+	outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT)|BV(TWSTA));
+ 262:	ec eb       	ldi	r30, 0xBC	; 188
+ 264:	f0 e0       	ldi	r31, 0x00	; 0
+ 266:	80 81       	ld	r24, Z
+ 268:	8f 70       	andi	r24, 0x0F	; 15
+ 26a:	80 6a       	ori	r24, 0xA0	; 160
+ 26c:	80 83       	st	Z, r24
+}
+ 26e:	08 95       	ret
+
+00000270 <i2cSendStop>:
+
+inline void i2cSendStop(void)
+{
+	// transmit stop condition
+	// leave with TWEA on for slave receiving
+	outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT)|BV(TWEA)|BV(TWSTO));
+ 270:	ec eb       	ldi	r30, 0xBC	; 188
+ 272:	f0 e0       	ldi	r31, 0x00	; 0
+ 274:	80 81       	ld	r24, Z
+ 276:	8f 70       	andi	r24, 0x0F	; 15
+ 278:	80 6d       	ori	r24, 0xD0	; 208
+ 27a:	80 83       	st	Z, r24
+}
+ 27c:	08 95       	ret
+
+0000027e <i2cWaitForComplete>:
+
+inline void i2cWaitForComplete(void)
+{
+	// wait for i2c interface to complete operation
+	while( !(inb(TWCR) & BV(TWINT)) );
+ 27e:	80 91 bc 00 	lds	r24, 0x00BC
+ 282:	87 ff       	sbrs	r24, 7
+ 284:	fc cf       	rjmp	.-8      	; 0x27e <i2cWaitForComplete>
+}
+ 286:	08 95       	ret
+
+00000288 <i2cSendByte>:
+
+inline void i2cSendByte(u08 data)
+{
+	// save data to the TWDR
+	outb(TWDR, data);
+ 288:	80 93 bb 00 	sts	0x00BB, r24
+	// begin send
+	outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT));
+ 28c:	ec eb       	ldi	r30, 0xBC	; 188
+ 28e:	f0 e0       	ldi	r31, 0x00	; 0
+ 290:	80 81       	ld	r24, Z
+ 292:	8f 70       	andi	r24, 0x0F	; 15
+ 294:	80 68       	ori	r24, 0x80	; 128
+ 296:	80 83       	st	Z, r24
+}
+ 298:	08 95       	ret
+
+0000029a <i2cReceiveByte>:
+
+inline void i2cReceiveByte(u08 ackFlag)
+{
+	// begin receive over i2c
+	if( ackFlag )
+ 29a:	88 23       	and	r24, r24
+ 29c:	29 f0       	breq	.+10     	; 0x2a8 <i2cReceiveByte+0xe>
+	{
+		// ackFlag = TRUE: ACK the recevied data
+		outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT)|BV(TWEA));
+ 29e:	80 91 bc 00 	lds	r24, 0x00BC
+ 2a2:	8f 70       	andi	r24, 0x0F	; 15
+ 2a4:	80 6c       	ori	r24, 0xC0	; 192
+ 2a6:	04 c0       	rjmp	.+8      	; 0x2b0 <i2cReceiveByte+0x16>
+	}
+	else
+	{
+		// ackFlag = FALSE: NACK the recevied data
+		outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT));
+ 2a8:	80 91 bc 00 	lds	r24, 0x00BC
+ 2ac:	8f 70       	andi	r24, 0x0F	; 15
+ 2ae:	80 68       	ori	r24, 0x80	; 128
+ 2b0:	80 93 bc 00 	sts	0x00BC, r24
+ 2b4:	08 95       	ret
+
+000002b6 <i2cGetReceivedByte>:
+}
+
+inline u08 i2cGetReceivedByte(void)
+{
+	// retieve received data byte from i2c TWDR
+	return( inb(TWDR) );
+ 2b6:	80 91 bb 00 	lds	r24, 0x00BB
+}
+ 2ba:	08 95       	ret
+
+000002bc <i2cGetStatus>:
+
+inline u08 i2cGetStatus(void)
+{
+	// retieve current i2c status from i2c TWSR
+	return( inb(TWSR) );
+ 2bc:	80 91 b9 00 	lds	r24, 0x00B9
+}
+ 2c0:	08 95       	ret
+
+000002c2 <i2cMasterSend>:
+
+void i2cMasterSend(u08 deviceAddr, u08 length, u08* data)
+{
+	u08 i;
+	// wait for interface to be ready
+	while(I2cState);
+ 2c2:	90 91 00 01 	lds	r25, 0x0100
+ 2c6:	99 23       	and	r25, r25
+ 2c8:	e1 f7       	brne	.-8      	; 0x2c2 <i2cMasterSend>
+	// set state
+	I2cState = I2C_MASTER_TX;
+ 2ca:	92 e0       	ldi	r25, 0x02	; 2
+ 2cc:	90 93 00 01 	sts	0x0100, r25
+	// save data
+	I2cDeviceAddrRW = (deviceAddr & 0xFE);	// RW cleared: write operation
+ 2d0:	8e 7f       	andi	r24, 0xFE	; 254
+ 2d2:	80 93 01 01 	sts	0x0101, r24
+ 2d6:	84 2f       	mov	r24, r20
+ 2d8:	95 2f       	mov	r25, r21
+ 2da:	dc 01       	movw	r26, r24
+ 2dc:	e4 e0       	ldi	r30, 0x04	; 4
+ 2de:	f1 e0       	ldi	r31, 0x01	; 1
+{
+	// retieve current i2c status from i2c TWSR
+	return( inb(TWSR) );
+}
+
+void i2cMasterSend(u08 deviceAddr, u08 length, u08* data)
+ 2e0:	86 2f       	mov	r24, r22
+ 2e2:	90 e0       	ldi	r25, 0x00	; 0
+ 2e4:	8e 0f       	add	r24, r30
+ 2e6:	9f 1f       	adc	r25, r31
+	while(I2cState);
+	// set state
+	I2cState = I2C_MASTER_TX;
+	// save data
+	I2cDeviceAddrRW = (deviceAddr & 0xFE);	// RW cleared: write operation
+	for(i=0; i<length; i++)
+ 2e8:	02 c0       	rjmp	.+4      	; 0x2ee <i2cMasterSend+0x2c>
+		I2cSendData[i] = *data++;
+ 2ea:	2d 91       	ld	r18, X+
+ 2ec:	21 93       	st	Z+, r18
+	while(I2cState);
+	// set state
+	I2cState = I2C_MASTER_TX;
+	// save data
+	I2cDeviceAddrRW = (deviceAddr & 0xFE);	// RW cleared: write operation
+	for(i=0; i<length; i++)
+ 2ee:	e8 17       	cp	r30, r24
+ 2f0:	f9 07       	cpc	r31, r25
+ 2f2:	d9 f7       	brne	.-10     	; 0x2ea <i2cMasterSend+0x28>
+		I2cSendData[i] = *data++;
+	I2cSendDataIndex = 0;
+ 2f4:	10 92 02 01 	sts	0x0102, r1
+	I2cSendDataLength = length;
+ 2f8:	60 93 03 01 	sts	0x0103, r22
+	// send start condition
+	i2cSendStart();
+ 2fc:	0e 94 31 01 	call	0x262	; 0x262 <i2cSendStart>
+}
+ 300:	08 95       	ret
+
+00000302 <i2cMasterReceive>:
+
+void i2cMasterReceive(u08 deviceAddr, u08 length, u08* data)
+{
+ 302:	0f 93       	push	r16
+ 304:	1f 93       	push	r17
+ 306:	df 93       	push	r29
+ 308:	cf 93       	push	r28
+ 30a:	0f 92       	push	r0
+ 30c:	cd b7       	in	r28, 0x3d	; 61
+ 30e:	de b7       	in	r29, 0x3e	; 62
+ 310:	8a 01       	movw	r16, r20
+	u08 i;
+	// wait for interface to be ready
+	while(I2cState);
+ 312:	90 91 00 01 	lds	r25, 0x0100
+ 316:	99 23       	and	r25, r25
+ 318:	e1 f7       	brne	.-8      	; 0x312 <i2cMasterReceive+0x10>
+	// set state
+	I2cState = I2C_MASTER_RX;
+ 31a:	93 e0       	ldi	r25, 0x03	; 3
+ 31c:	90 93 00 01 	sts	0x0100, r25
+	// save data
+	I2cDeviceAddrRW = (deviceAddr|0x01);	// RW set: read operation
+ 320:	81 60       	ori	r24, 0x01	; 1
+ 322:	80 93 01 01 	sts	0x0101, r24
+	I2cReceiveDataIndex = 0;
+ 326:	10 92 24 01 	sts	0x0124, r1
+	I2cReceiveDataLength = length;
+ 32a:	60 93 45 01 	sts	0x0145, r22
+	// send start condition
+	i2cSendStart();
+ 32e:	69 83       	std	Y+1, r22	; 0x01
+ 330:	0e 94 31 01 	call	0x262	; 0x262 <i2cSendStart>
+ 334:	69 81       	ldd	r22, Y+1	; 0x01
+	// wait for data
+	while(I2cState);
+ 336:	80 91 00 01 	lds	r24, 0x0100
+ 33a:	88 23       	and	r24, r24
+ 33c:	e1 f7       	brne	.-8      	; 0x336 <i2cMasterReceive+0x34>
+ 33e:	e5 e2       	ldi	r30, 0x25	; 37
+ 340:	f1 e0       	ldi	r31, 0x01	; 1
+	I2cSendDataLength = length;
+	// send start condition
+	i2cSendStart();
+}
+
+void i2cMasterReceive(u08 deviceAddr, u08 length, u08* data)
+ 342:	70 e0       	ldi	r23, 0x00	; 0
+ 344:	6e 0f       	add	r22, r30
+ 346:	7f 1f       	adc	r23, r31
+ 348:	04 c0       	rjmp	.+8      	; 0x352 <i2cMasterReceive+0x50>
+	i2cSendStart();
+	// wait for data
+	while(I2cState);
+	// return data
+	for(i=0; i<length; i++)
+		*data++ = I2cReceiveData[i];
+ 34a:	81 91       	ld	r24, Z+
+ 34c:	d8 01       	movw	r26, r16
+ 34e:	8d 93       	st	X+, r24
+ 350:	8d 01       	movw	r16, r26
+	// send start condition
+	i2cSendStart();
+	// wait for data
+	while(I2cState);
+	// return data
+	for(i=0; i<length; i++)
+ 352:	e6 17       	cp	r30, r22
+ 354:	f7 07       	cpc	r31, r23
+ 356:	c9 f7       	brne	.-14     	; 0x34a <i2cMasterReceive+0x48>
+		*data++ = I2cReceiveData[i];
+}
+ 358:	0f 90       	pop	r0
+ 35a:	cf 91       	pop	r28
+ 35c:	df 91       	pop	r29
+ 35e:	1f 91       	pop	r17
+ 360:	0f 91       	pop	r16
+ 362:	08 95       	ret
+
+00000364 <i2cMasterSendNI>:
+
+u08 i2cMasterSendNI(u08 deviceAddr, u08 length, u08* data)
+{
+ 364:	ef 92       	push	r14
+ 366:	ff 92       	push	r15
+ 368:	1f 93       	push	r17
+ 36a:	df 93       	push	r29
+ 36c:	cf 93       	push	r28
+ 36e:	0f 92       	push	r0
+ 370:	cd b7       	in	r28, 0x3d	; 61
+ 372:	de b7       	in	r29, 0x3e	; 62
+ 374:	16 2f       	mov	r17, r22
+ 376:	7a 01       	movw	r14, r20
+	u08 retval = I2C_OK;
+
+	// disable TWI interrupt
+	cbi(TWCR, TWIE);
+ 378:	90 91 bc 00 	lds	r25, 0x00BC
+ 37c:	9e 7f       	andi	r25, 0xFE	; 254
+ 37e:	90 93 bc 00 	sts	0x00BC, r25
+
+	// send start condition
+	i2cSendStart();
+ 382:	89 83       	std	Y+1, r24	; 0x01
+ 384:	0e 94 31 01 	call	0x262	; 0x262 <i2cSendStart>
+	i2cWaitForComplete();
+ 388:	0e 94 3f 01 	call	0x27e	; 0x27e <i2cWaitForComplete>
+
+	// send device address with write
+	i2cSendByte( deviceAddr & 0xFE );
+ 38c:	89 81       	ldd	r24, Y+1	; 0x01
+ 38e:	8e 7f       	andi	r24, 0xFE	; 254
+ 390:	0e 94 44 01 	call	0x288	; 0x288 <i2cSendByte>
+	i2cWaitForComplete();
+ 394:	0e 94 3f 01 	call	0x27e	; 0x27e <i2cWaitForComplete>
+
+	// check if device is present and live
+	if( inb(TWSR) == TW_MT_SLA_ACK)
+ 398:	80 91 b9 00 	lds	r24, 0x00B9
+ 39c:	88 31       	cpi	r24, 0x18	; 24
+ 39e:	69 f4       	brne	.+26     	; 0x3ba <i2cMasterSendNI+0x56>
+ 3a0:	08 c0       	rjmp	.+16     	; 0x3b2 <i2cMasterSendNI+0x4e>
+	{
+		// send data
+		while(length)
+		{
+			i2cSendByte( *data++ );
+ 3a2:	f7 01       	movw	r30, r14
+ 3a4:	81 91       	ld	r24, Z+
+ 3a6:	7f 01       	movw	r14, r30
+ 3a8:	0e 94 44 01 	call	0x288	; 0x288 <i2cSendByte>
+			i2cWaitForComplete();
+ 3ac:	0e 94 3f 01 	call	0x27e	; 0x27e <i2cWaitForComplete>
+			length--;
+ 3b0:	11 50       	subi	r17, 0x01	; 1
+
+	// check if device is present and live
+	if( inb(TWSR) == TW_MT_SLA_ACK)
+	{
+		// send data
+		while(length)
+ 3b2:	11 23       	and	r17, r17
+ 3b4:	b1 f7       	brne	.-20     	; 0x3a2 <i2cMasterSendNI+0x3e>
+		*data++ = I2cReceiveData[i];
+}
+
+u08 i2cMasterSendNI(u08 deviceAddr, u08 length, u08* data)
+{
+	u08 retval = I2C_OK;
+ 3b6:	80 e0       	ldi	r24, 0x00	; 0
+ 3b8:	01 c0       	rjmp	.+2      	; 0x3bc <i2cMasterSendNI+0x58>
+	else
+	{
+		// device did not ACK it's address,
+		// data will not be transferred
+		// return error
+		retval = I2C_ERROR_NODEV;
+ 3ba:	81 e0       	ldi	r24, 0x01	; 1
+	}
+
+	// transmit stop condition
+	// leave with TWEA on for slave receiving
+	i2cSendStop();
+ 3bc:	89 83       	std	Y+1, r24	; 0x01
+ 3be:	0e 94 38 01 	call	0x270	; 0x270 <i2cSendStop>
+ 3c2:	89 81       	ldd	r24, Y+1	; 0x01
+	while( !(inb(TWCR) & BV(TWSTO)) );
+ 3c4:	90 91 bc 00 	lds	r25, 0x00BC
+ 3c8:	94 ff       	sbrs	r25, 4
+ 3ca:	fc cf       	rjmp	.-8      	; 0x3c4 <i2cMasterSendNI+0x60>
+
+	// enable TWI interrupt
+	sbi(TWCR, TWIE);
+ 3cc:	90 91 bc 00 	lds	r25, 0x00BC
+ 3d0:	91 60       	ori	r25, 0x01	; 1
+ 3d2:	90 93 bc 00 	sts	0x00BC, r25
+
+	return retval;
+}
+ 3d6:	0f 90       	pop	r0
+ 3d8:	cf 91       	pop	r28
+ 3da:	df 91       	pop	r29
+ 3dc:	1f 91       	pop	r17
+ 3de:	ff 90       	pop	r15
+ 3e0:	ef 90       	pop	r14
+ 3e2:	08 95       	ret
+
+000003e4 <i2cMasterReceiveNI>:
+
+u08 i2cMasterReceiveNI(u08 deviceAddr, u08 length, u08 *data)
+{
+ 3e4:	ef 92       	push	r14
+ 3e6:	ff 92       	push	r15
+ 3e8:	1f 93       	push	r17
+ 3ea:	df 93       	push	r29
+ 3ec:	cf 93       	push	r28
+ 3ee:	0f 92       	push	r0
+ 3f0:	cd b7       	in	r28, 0x3d	; 61
+ 3f2:	de b7       	in	r29, 0x3e	; 62
+ 3f4:	16 2f       	mov	r17, r22
+ 3f6:	7a 01       	movw	r14, r20
+	u08 retval = I2C_OK;
+
+	// disable TWI interrupt
+	cbi(TWCR, TWIE);
+ 3f8:	90 91 bc 00 	lds	r25, 0x00BC
+ 3fc:	9e 7f       	andi	r25, 0xFE	; 254
+ 3fe:	90 93 bc 00 	sts	0x00BC, r25
+
+	// send start condition
+	i2cSendStart();
+ 402:	89 83       	std	Y+1, r24	; 0x01
+ 404:	0e 94 31 01 	call	0x262	; 0x262 <i2cSendStart>
+	i2cWaitForComplete();
+ 408:	0e 94 3f 01 	call	0x27e	; 0x27e <i2cWaitForComplete>
+
+	// send device address with read
+	i2cSendByte( deviceAddr | 0x01 );
+ 40c:	89 81       	ldd	r24, Y+1	; 0x01
+ 40e:	81 60       	ori	r24, 0x01	; 1
+ 410:	0e 94 44 01 	call	0x288	; 0x288 <i2cSendByte>
+	i2cWaitForComplete();
+ 414:	0e 94 3f 01 	call	0x27e	; 0x27e <i2cWaitForComplete>
+
+	// check if device is present and live
+	if( inb(TWSR) == TW_MR_SLA_ACK)
+ 418:	80 91 b9 00 	lds	r24, 0x00B9
+ 41c:	80 34       	cpi	r24, 0x40	; 64
+ 41e:	c9 f4       	brne	.+50     	; 0x452 <i2cMasterReceiveNI+0x6e>
+ 420:	0b c0       	rjmp	.+22     	; 0x438 <i2cMasterReceiveNI+0x54>
+	{
+		// accept receive data and ack it
+		while(length > 1)
+		{
+			i2cReceiveByte(TRUE);
+ 422:	8f ef       	ldi	r24, 0xFF	; 255
+ 424:	0e 94 4d 01 	call	0x29a	; 0x29a <i2cReceiveByte>
+			i2cWaitForComplete();
+ 428:	0e 94 3f 01 	call	0x27e	; 0x27e <i2cWaitForComplete>
+}
+
+inline u08 i2cGetReceivedByte(void)
+{
+	// retieve received data byte from i2c TWDR
+	return( inb(TWDR) );
+ 42c:	80 91 bb 00 	lds	r24, 0x00BB
+		// accept receive data and ack it
+		while(length > 1)
+		{
+			i2cReceiveByte(TRUE);
+			i2cWaitForComplete();
+			*data++ = i2cGetReceivedByte();
+ 430:	f7 01       	movw	r30, r14
+ 432:	81 93       	st	Z+, r24
+ 434:	7f 01       	movw	r14, r30
+			// decrement length
+			length--;
+ 436:	11 50       	subi	r17, 0x01	; 1
+
+	// check if device is present and live
+	if( inb(TWSR) == TW_MR_SLA_ACK)
+	{
+		// accept receive data and ack it
+		while(length > 1)
+ 438:	12 30       	cpi	r17, 0x02	; 2
+ 43a:	98 f7       	brcc	.-26     	; 0x422 <i2cMasterReceiveNI+0x3e>
+			// decrement length
+			length--;
+		}
+
+		// accept receive data and nack it (last-byte signal)
+		i2cReceiveByte(FALSE);
+ 43c:	80 e0       	ldi	r24, 0x00	; 0
+ 43e:	0e 94 4d 01 	call	0x29a	; 0x29a <i2cReceiveByte>
+		i2cWaitForComplete();
+ 442:	0e 94 3f 01 	call	0x27e	; 0x27e <i2cWaitForComplete>
+}
+
+inline u08 i2cGetReceivedByte(void)
+{
+	// retieve received data byte from i2c TWDR
+	return( inb(TWDR) );
+ 446:	80 91 bb 00 	lds	r24, 0x00BB
+		}
+
+		// accept receive data and nack it (last-byte signal)
+		i2cReceiveByte(FALSE);
+		i2cWaitForComplete();
+		*data++ = i2cGetReceivedByte();
+ 44a:	f7 01       	movw	r30, r14
+ 44c:	80 83       	st	Z, r24
+	return retval;
+}
+
+u08 i2cMasterReceiveNI(u08 deviceAddr, u08 length, u08 *data)
+{
+	u08 retval = I2C_OK;
+ 44e:	80 e0       	ldi	r24, 0x00	; 0
+ 450:	01 c0       	rjmp	.+2      	; 0x454 <i2cMasterReceiveNI+0x70>
+	else
+	{
+		// device did not ACK it's address,
+		// data will not be transferred
+		// return error
+		retval = I2C_ERROR_NODEV;
+ 452:	81 e0       	ldi	r24, 0x01	; 1
+	}
+
+	// transmit stop condition
+	// leave with TWEA on for slave receiving
+	i2cSendStop();
+ 454:	89 83       	std	Y+1, r24	; 0x01
+ 456:	0e 94 38 01 	call	0x270	; 0x270 <i2cSendStop>
+
+	// enable TWI interrupt
+	sbi(TWCR, TWIE);
+ 45a:	90 91 bc 00 	lds	r25, 0x00BC
+ 45e:	91 60       	ori	r25, 0x01	; 1
+ 460:	90 93 bc 00 	sts	0x00BC, r25
+
+	return retval;
+}
+ 464:	89 81       	ldd	r24, Y+1	; 0x01
+ 466:	0f 90       	pop	r0
+ 468:	cf 91       	pop	r28
+ 46a:	df 91       	pop	r29
+ 46c:	1f 91       	pop	r17
+ 46e:	ff 90       	pop	r15
+ 470:	ef 90       	pop	r14
+ 472:	08 95       	ret
+
+00000474 <SIG_2WIRE_SERIAL>:
+}
+*/
+
+//! I2C (TWI) interrupt service routine
+SIGNAL(SIG_2WIRE_SERIAL)
+{
+ 474:	1f 92       	push	r1
+ 476:	0f 92       	push	r0
+ 478:	0f b6       	in	r0, 0x3f	; 63
+ 47a:	0f 92       	push	r0
+ 47c:	11 24       	eor	r1, r1
+ 47e:	2f 93       	push	r18
+ 480:	3f 93       	push	r19
+ 482:	4f 93       	push	r20
+ 484:	5f 93       	push	r21
+ 486:	6f 93       	push	r22
+ 488:	7f 93       	push	r23
+ 48a:	8f 93       	push	r24
+ 48c:	9f 93       	push	r25
+ 48e:	af 93       	push	r26
+ 490:	bf 93       	push	r27
+ 492:	ef 93       	push	r30
+ 494:	ff 93       	push	r31
+	// read status bits
+	u08 status = inb(TWSR) & TWSR_STATUS_MASK;
+ 496:	80 91 b9 00 	lds	r24, 0x00B9
+ 49a:	88 7f       	andi	r24, 0xF8	; 248
+
+	switch(status)
+ 49c:	80 36       	cpi	r24, 0x60	; 96
+ 49e:	09 f4       	brne	.+2      	; 0x4a2 <SIG_2WIRE_SERIAL+0x2e>
+ 4a0:	a0 c0       	rjmp	.+320    	; 0x5e2 <__stack+0xe3>
+ 4a2:	81 36       	cpi	r24, 0x61	; 97
+ 4a4:	70 f5       	brcc	.+92     	; 0x502 <__stack+0x3>
+ 4a6:	88 32       	cpi	r24, 0x28	; 40
+ 4a8:	09 f4       	brne	.+2      	; 0x4ac <SIG_2WIRE_SERIAL+0x38>
+ 4aa:	5f c0       	rjmp	.+190    	; 0x56a <__stack+0x6b>
+ 4ac:	89 32       	cpi	r24, 0x29	; 41
+ 4ae:	98 f4       	brcc	.+38     	; 0x4d6 <SIG_2WIRE_SERIAL+0x62>
+ 4b0:	80 31       	cpi	r24, 0x10	; 16
+ 4b2:	09 f4       	brne	.+2      	; 0x4b6 <SIG_2WIRE_SERIAL+0x42>
+ 4b4:	57 c0       	rjmp	.+174    	; 0x564 <__stack+0x65>
+ 4b6:	81 31       	cpi	r24, 0x11	; 17
+ 4b8:	38 f4       	brcc	.+14     	; 0x4c8 <SIG_2WIRE_SERIAL+0x54>
+ 4ba:	88 23       	and	r24, r24
+ 4bc:	09 f4       	brne	.+2      	; 0x4c0 <SIG_2WIRE_SERIAL+0x4c>
+ 4be:	ef c0       	rjmp	.+478    	; 0x69e <__stack+0x19f>
+ 4c0:	88 30       	cpi	r24, 0x08	; 8
+ 4c2:	09 f0       	breq	.+2      	; 0x4c6 <SIG_2WIRE_SERIAL+0x52>
+ 4c4:	f4 c0       	rjmp	.+488    	; 0x6ae <__stack+0x1af>
+ 4c6:	4e c0       	rjmp	.+156    	; 0x564 <__stack+0x65>
+ 4c8:	88 31       	cpi	r24, 0x18	; 24
+ 4ca:	09 f4       	brne	.+2      	; 0x4ce <SIG_2WIRE_SERIAL+0x5a>
+ 4cc:	4e c0       	rjmp	.+156    	; 0x56a <__stack+0x6b>
+ 4ce:	80 32       	cpi	r24, 0x20	; 32
+ 4d0:	09 f0       	breq	.+2      	; 0x4d4 <SIG_2WIRE_SERIAL+0x60>
+ 4d2:	ed c0       	rjmp	.+474    	; 0x6ae <__stack+0x1af>
+ 4d4:	67 c0       	rjmp	.+206    	; 0x5a4 <__stack+0xa5>
+ 4d6:	80 34       	cpi	r24, 0x40	; 64
+ 4d8:	09 f4       	brne	.+2      	; 0x4dc <SIG_2WIRE_SERIAL+0x68>
+ 4da:	78 c0       	rjmp	.+240    	; 0x5cc <__stack+0xcd>
+ 4dc:	81 34       	cpi	r24, 0x41	; 65
+ 4de:	38 f4       	brcc	.+14     	; 0x4ee <SIG_2WIRE_SERIAL+0x7a>
+ 4e0:	80 33       	cpi	r24, 0x30	; 48
+ 4e2:	09 f4       	brne	.+2      	; 0x4e6 <SIG_2WIRE_SERIAL+0x72>
+ 4e4:	5f c0       	rjmp	.+190    	; 0x5a4 <__stack+0xa5>
+ 4e6:	88 33       	cpi	r24, 0x38	; 56
+ 4e8:	09 f0       	breq	.+2      	; 0x4ec <SIG_2WIRE_SERIAL+0x78>
+ 4ea:	e1 c0       	rjmp	.+450    	; 0x6ae <__stack+0x1af>
+ 4ec:	5e c0       	rjmp	.+188    	; 0x5aa <__stack+0xab>
+ 4ee:	80 35       	cpi	r24, 0x50	; 80
+ 4f0:	09 f4       	brne	.+2      	; 0x4f4 <SIG_2WIRE_SERIAL+0x80>
+ 4f2:	60 c0       	rjmp	.+192    	; 0x5b4 <__stack+0xb5>
+ 4f4:	88 35       	cpi	r24, 0x58	; 88
+ 4f6:	09 f4       	brne	.+2      	; 0x4fa <SIG_2WIRE_SERIAL+0x86>
+ 4f8:	49 c0       	rjmp	.+146    	; 0x58c <__stack+0x8d>
+ 4fa:	88 34       	cpi	r24, 0x48	; 72
+ 4fc:	09 f0       	breq	.+2      	; 0x500 <__stack+0x1>
+ 4fe:	d7 c0       	rjmp	.+430    	; 0x6ae <__stack+0x1af>
+ 500:	51 c0       	rjmp	.+162    	; 0x5a4 <__stack+0xa5>
+ 502:	88 39       	cpi	r24, 0x98	; 152
+ 504:	09 f4       	brne	.+2      	; 0x508 <__stack+0x9>
+ 506:	83 c0       	rjmp	.+262    	; 0x60e <__stack+0x10f>
+ 508:	89 39       	cpi	r24, 0x99	; 153
+ 50a:	b0 f4       	brcc	.+44     	; 0x538 <__stack+0x39>
+ 50c:	88 37       	cpi	r24, 0x78	; 120
+ 50e:	09 f4       	brne	.+2      	; 0x512 <__stack+0x13>
+ 510:	68 c0       	rjmp	.+208    	; 0x5e2 <__stack+0xe3>
+ 512:	89 37       	cpi	r24, 0x79	; 121
+ 514:	38 f4       	brcc	.+14     	; 0x524 <__stack+0x25>
+ 516:	88 36       	cpi	r24, 0x68	; 104
+ 518:	09 f4       	brne	.+2      	; 0x51c <__stack+0x1d>
+ 51a:	63 c0       	rjmp	.+198    	; 0x5e2 <__stack+0xe3>
+ 51c:	80 37       	cpi	r24, 0x70	; 112
+ 51e:	09 f0       	breq	.+2      	; 0x522 <__stack+0x23>
+ 520:	c6 c0       	rjmp	.+396    	; 0x6ae <__stack+0x1af>
+ 522:	5f c0       	rjmp	.+190    	; 0x5e2 <__stack+0xe3>
+ 524:	88 38       	cpi	r24, 0x88	; 136
+ 526:	09 f4       	brne	.+2      	; 0x52a <__stack+0x2b>
+ 528:	72 c0       	rjmp	.+228    	; 0x60e <__stack+0x10f>
+ 52a:	80 39       	cpi	r24, 0x90	; 144
+ 52c:	09 f4       	brne	.+2      	; 0x530 <__stack+0x31>
+ 52e:	5f c0       	rjmp	.+190    	; 0x5ee <__stack+0xef>
+ 530:	80 38       	cpi	r24, 0x80	; 128
+ 532:	09 f0       	breq	.+2      	; 0x536 <__stack+0x37>
+ 534:	bc c0       	rjmp	.+376    	; 0x6ae <__stack+0x1af>
+ 536:	5b c0       	rjmp	.+182    	; 0x5ee <__stack+0xef>
+ 538:	80 3b       	cpi	r24, 0xB0	; 176
+ 53a:	09 f4       	brne	.+2      	; 0x53e <__stack+0x3f>
+ 53c:	7e c0       	rjmp	.+252    	; 0x63a <__stack+0x13b>
+ 53e:	81 3b       	cpi	r24, 0xB1	; 177
+ 540:	38 f4       	brcc	.+14     	; 0x550 <__stack+0x51>
+ 542:	80 3a       	cpi	r24, 0xA0	; 160
+ 544:	09 f4       	brne	.+2      	; 0x548 <__stack+0x49>
+ 546:	67 c0       	rjmp	.+206    	; 0x616 <__stack+0x117>
+ 548:	88 3a       	cpi	r24, 0xA8	; 168
+ 54a:	09 f0       	breq	.+2      	; 0x54e <__stack+0x4f>
+ 54c:	b0 c0       	rjmp	.+352    	; 0x6ae <__stack+0x1af>
+ 54e:	75 c0       	rjmp	.+234    	; 0x63a <__stack+0x13b>
+ 550:	80 3c       	cpi	r24, 0xC0	; 192
+ 552:	09 f4       	brne	.+2      	; 0x556 <__stack+0x57>
+ 554:	9f c0       	rjmp	.+318    	; 0x694 <__stack+0x195>
+ 556:	88 3c       	cpi	r24, 0xC8	; 200
+ 558:	09 f4       	brne	.+2      	; 0x55c <__stack+0x5d>
+ 55a:	9c c0       	rjmp	.+312    	; 0x694 <__stack+0x195>
+ 55c:	88 3b       	cpi	r24, 0xB8	; 184
+ 55e:	09 f0       	breq	.+2      	; 0x562 <__stack+0x63>
+ 560:	a6 c0       	rjmp	.+332    	; 0x6ae <__stack+0x1af>
+ 562:	7c c0       	rjmp	.+248    	; 0x65c <__stack+0x15d>
+		rprintfInit(uart1AddToTxBuffer);
+		rprintf("I2C: M->START\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// send device address
+		i2cSendByte(I2cDeviceAddrRW);
+ 564:	80 91 01 01 	lds	r24, 0x0101
+ 568:	0e c0       	rjmp	.+28     	; 0x586 <__stack+0x87>
+		#ifdef I2C_DEBUG
+		rprintfInit(uart1AddToTxBuffer);
+		rprintf("I2C: MT->SLA_ACK or DATA_ACK\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		if(I2cSendDataIndex < I2cSendDataLength)
+ 56a:	90 91 02 01 	lds	r25, 0x0102
+ 56e:	80 91 03 01 	lds	r24, 0x0103
+ 572:	98 17       	cp	r25, r24
+ 574:	b8 f4       	brcc	.+46     	; 0x5a4 <__stack+0xa5>
+		{
+			// send data
+			i2cSendByte( I2cSendData[I2cSendDataIndex++] );
+ 576:	e9 2f       	mov	r30, r25
+ 578:	f0 e0       	ldi	r31, 0x00	; 0
+ 57a:	ec 5f       	subi	r30, 0xFC	; 252
+ 57c:	fe 4f       	sbci	r31, 0xFE	; 254
+ 57e:	80 81       	ld	r24, Z
+ 580:	9f 5f       	subi	r25, 0xFF	; 255
+ 582:	90 93 02 01 	sts	0x0102, r25
+ 586:	0e 94 44 01 	call	0x288	; 0x288 <i2cSendByte>
+ 58a:	91 c0       	rjmp	.+290    	; 0x6ae <__stack+0x1af>
+		rprintfInit(uart1AddToTxBuffer);
+		rprintf("I2C: MR->DATA_NACK\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// store final received data byte
+		I2cReceiveData[I2cReceiveDataIndex++] = inb(TWDR);
+ 58c:	80 91 24 01 	lds	r24, 0x0124
+ 590:	90 91 bb 00 	lds	r25, 0x00BB
+ 594:	e8 2f       	mov	r30, r24
+ 596:	f0 e0       	ldi	r31, 0x00	; 0
+ 598:	eb 5d       	subi	r30, 0xDB	; 219
+ 59a:	fe 4f       	sbci	r31, 0xFE	; 254
+ 59c:	90 83       	st	Z, r25
+ 59e:	8f 5f       	subi	r24, 0xFF	; 255
+ 5a0:	80 93 24 01 	sts	0x0124, r24
+		rprintfInit(uart1AddToTxBuffer);
+		rprintf("I2C: MTR->SLA_NACK or MT->DATA_NACK\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// transmit stop condition, enable SLA ACK
+		i2cSendStop();
+ 5a4:	0e 94 38 01 	call	0x270	; 0x270 <i2cSendStop>
+ 5a8:	80 c0       	rjmp	.+256    	; 0x6aa <__stack+0x1ab>
+		rprintfInit(uart1AddToTxBuffer);
+		rprintf("I2C: MT->ARB_LOST\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// release bus
+		outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT));
+ 5aa:	80 91 bc 00 	lds	r24, 0x00BC
+ 5ae:	8f 70       	andi	r24, 0x0F	; 15
+ 5b0:	80 68       	ori	r24, 0x80	; 128
+ 5b2:	79 c0       	rjmp	.+242    	; 0x6a6 <__stack+0x1a7>
+		rprintfInit(uart1AddToTxBuffer);
+		rprintf("I2C: MR->DATA_ACK\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// store received data byte
+		I2cReceiveData[I2cReceiveDataIndex++] = inb(TWDR);
+ 5b4:	80 91 24 01 	lds	r24, 0x0124
+ 5b8:	90 91 bb 00 	lds	r25, 0x00BB
+ 5bc:	e8 2f       	mov	r30, r24
+ 5be:	f0 e0       	ldi	r31, 0x00	; 0
+ 5c0:	eb 5d       	subi	r30, 0xDB	; 219
+ 5c2:	fe 4f       	sbci	r31, 0xFE	; 254
+ 5c4:	90 83       	st	Z, r25
+ 5c6:	8f 5f       	subi	r24, 0xFF	; 255
+ 5c8:	80 93 24 01 	sts	0x0124, r24
+		#ifdef I2C_DEBUG
+		rprintfInit(uart1AddToTxBuffer);
+		rprintf("I2C: MR->SLA_ACK\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		if(I2cReceiveDataIndex < (I2cReceiveDataLength-1))
+ 5cc:	20 91 24 01 	lds	r18, 0x0124
+ 5d0:	30 e0       	ldi	r19, 0x00	; 0
+ 5d2:	80 91 45 01 	lds	r24, 0x0145
+ 5d6:	90 e0       	ldi	r25, 0x00	; 0
+ 5d8:	01 97       	sbiw	r24, 0x01	; 1
+ 5da:	28 17       	cp	r18, r24
+ 5dc:	39 07       	cpc	r19, r25
+ 5de:	bc f4       	brge	.+46     	; 0x60e <__stack+0x10f>
+ 5e0:	14 c0       	rjmp	.+40     	; 0x60a <__stack+0x10b>
+		rprintf("I2C: SR->SLA_ACK\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// we are being addressed as slave for writing (data will be received from master)
+		// set state
+		I2cState = I2C_SLAVE_RX;
+ 5e2:	85 e0       	ldi	r24, 0x05	; 5
+ 5e4:	80 93 00 01 	sts	0x0100, r24
+		// prepare buffer
+		I2cReceiveDataIndex = 0;
+ 5e8:	10 92 24 01 	sts	0x0124, r1
+ 5ec:	47 c0       	rjmp	.+142    	; 0x67c <__stack+0x17d>
+		rprintfInit(uart1AddToTxBuffer);
+		rprintf("I2C: SR->DATA_ACK\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// get previously received data byte
+		I2cReceiveData[I2cReceiveDataIndex++] = inb(TWDR);
+ 5ee:	80 91 24 01 	lds	r24, 0x0124
+ 5f2:	90 91 bb 00 	lds	r25, 0x00BB
+ 5f6:	e8 2f       	mov	r30, r24
+ 5f8:	f0 e0       	ldi	r31, 0x00	; 0
+ 5fa:	eb 5d       	subi	r30, 0xDB	; 219
+ 5fc:	fe 4f       	sbci	r31, 0xFE	; 254
+ 5fe:	90 83       	st	Z, r25
+ 600:	8f 5f       	subi	r24, 0xFF	; 255
+ 602:	80 93 24 01 	sts	0x0124, r24
+		// check receive buffer status
+		if(I2cReceiveDataIndex < I2C_RECEIVE_DATA_BUFFER_SIZE)
+ 606:	80 32       	cpi	r24, 0x20	; 32
+ 608:	10 f4       	brcc	.+4      	; 0x60e <__stack+0x10f>
+		{
+			// receive data byte and return ACK
+			i2cReceiveByte(TRUE);
+ 60a:	8f ef       	ldi	r24, 0xFF	; 255
+ 60c:	01 c0       	rjmp	.+2      	; 0x610 <__stack+0x111>
+		rprintfInit(uart1AddToTxBuffer);
+		rprintf("I2C: SR->DATA_NACK\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// receive data byte and return NACK
+		i2cReceiveByte(FALSE);
+ 60e:	80 e0       	ldi	r24, 0x00	; 0
+ 610:	0e 94 4d 01 	call	0x29a	; 0x29a <i2cReceiveByte>
+		//outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT));
+		break;
+ 614:	4c c0       	rjmp	.+152    	; 0x6ae <__stack+0x1af>
+		rprintfInit(uart1AddToTxBuffer);
+		rprintf("I2C: SR->SR_STOP\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// switch to SR mode with SLA ACK
+		outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT)|BV(TWEA));
+ 616:	80 91 bc 00 	lds	r24, 0x00BC
+ 61a:	8f 70       	andi	r24, 0x0F	; 15
+ 61c:	80 6c       	ori	r24, 0xC0	; 192
+ 61e:	80 93 bc 00 	sts	0x00BC, r24
+		// i2c receive is complete, call i2cSlaveReceive
+		if(i2cSlaveReceive) i2cSlaveReceive(I2cReceiveDataIndex, I2cReceiveData);
+ 622:	e0 91 46 01 	lds	r30, 0x0146
+ 626:	f0 91 47 01 	lds	r31, 0x0147
+ 62a:	30 97       	sbiw	r30, 0x00	; 0
+ 62c:	f1 f1       	breq	.+124    	; 0x6aa <__stack+0x1ab>
+ 62e:	80 91 24 01 	lds	r24, 0x0124
+ 632:	65 e2       	ldi	r22, 0x25	; 37
+ 634:	71 e0       	ldi	r23, 0x01	; 1
+ 636:	09 95       	icall
+ 638:	38 c0       	rjmp	.+112    	; 0x6aa <__stack+0x1ab>
+		rprintf("I2C: ST->SLA_ACK\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// we are being addressed as slave for reading (data must be transmitted back to master)
+		// set state
+		I2cState = I2C_SLAVE_TX;
+ 63a:	84 e0       	ldi	r24, 0x04	; 4
+ 63c:	80 93 00 01 	sts	0x0100, r24
+		// request data from application
+		if(i2cSlaveTransmit) I2cSendDataLength = i2cSlaveTransmit(I2C_SEND_DATA_BUFFER_SIZE, I2cSendData);
+ 640:	e0 91 48 01 	lds	r30, 0x0148
+ 644:	f0 91 49 01 	lds	r31, 0x0149
+ 648:	30 97       	sbiw	r30, 0x00	; 0
+ 64a:	31 f0       	breq	.+12     	; 0x658 <__stack+0x159>
+ 64c:	80 e2       	ldi	r24, 0x20	; 32
+ 64e:	64 e0       	ldi	r22, 0x04	; 4
+ 650:	71 e0       	ldi	r23, 0x01	; 1
+ 652:	09 95       	icall
+ 654:	80 93 03 01 	sts	0x0103, r24
+		// reset data index
+		I2cSendDataIndex = 0;
+ 658:	10 92 02 01 	sts	0x0102, r1
+		rprintfInit(uart1AddToTxBuffer);
+		rprintf("I2C: ST->DATA_ACK\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// transmit data byte
+		outb(TWDR, I2cSendData[I2cSendDataIndex++]);
+ 65c:	80 91 02 01 	lds	r24, 0x0102
+ 660:	e8 2f       	mov	r30, r24
+ 662:	f0 e0       	ldi	r31, 0x00	; 0
+ 664:	ec 5f       	subi	r30, 0xFC	; 252
+ 666:	fe 4f       	sbci	r31, 0xFE	; 254
+ 668:	90 81       	ld	r25, Z
+ 66a:	90 93 bb 00 	sts	0x00BB, r25
+ 66e:	8f 5f       	subi	r24, 0xFF	; 255
+ 670:	80 93 02 01 	sts	0x0102, r24
+		if(I2cSendDataIndex < I2cSendDataLength)
+ 674:	90 91 03 01 	lds	r25, 0x0103
+ 678:	89 17       	cp	r24, r25
+ 67a:	28 f4       	brcc	.+10     	; 0x686 <__stack+0x187>
+			// expect ACK to data byte
+			outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT)|BV(TWEA));
+ 67c:	80 91 bc 00 	lds	r24, 0x00BC
+ 680:	8f 70       	andi	r24, 0x0F	; 15
+ 682:	80 6c       	ori	r24, 0xC0	; 192
+ 684:	04 c0       	rjmp	.+8      	; 0x68e <__stack+0x18f>
+		else
+			// expect NACK to data byte
+			outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT));
+ 686:	80 91 bc 00 	lds	r24, 0x00BC
+ 68a:	8f 70       	andi	r24, 0x0F	; 15
+ 68c:	80 68       	ori	r24, 0x80	; 128
+ 68e:	80 93 bc 00 	sts	0x00BC, r24
+ 692:	0d c0       	rjmp	.+26     	; 0x6ae <__stack+0x1af>
+		rprintf("I2C: ST->DATA_NACK or LAST_DATA\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// all done
+		// switch to open slave
+		outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT)|BV(TWEA));
+ 694:	80 91 bc 00 	lds	r24, 0x00BC
+ 698:	8f 70       	andi	r24, 0x0F	; 15
+ 69a:	80 6c       	ori	r24, 0xC0	; 192
+ 69c:	04 c0       	rjmp	.+8      	; 0x6a6 <__stack+0x1a7>
+		rprintfInit(uart1AddToTxBuffer);
+		rprintf("I2C: BUS_ERROR\r\n");
+		rprintfInit(uart1SendByte);
+		#endif
+		// reset internal hardware and release bus
+		outb(TWCR, (inb(TWCR)&TWCR_CMD_MASK)|BV(TWINT)|BV(TWSTO)|BV(TWEA));
+ 69e:	80 91 bc 00 	lds	r24, 0x00BC
+ 6a2:	8f 70       	andi	r24, 0x0F	; 15
+ 6a4:	80 6d       	ori	r24, 0xD0	; 208
+ 6a6:	80 93 bc 00 	sts	0x00BC, r24
+		// set state
+		I2cState = I2C_IDLE;
+ 6aa:	10 92 00 01 	sts	0x0100, r1
+		break;
+	}
+}
+ 6ae:	ff 91       	pop	r31
+ 6b0:	ef 91       	pop	r30
+ 6b2:	bf 91       	pop	r27
+ 6b4:	af 91       	pop	r26
+ 6b6:	9f 91       	pop	r25
+ 6b8:	8f 91       	pop	r24
+ 6ba:	7f 91       	pop	r23
+ 6bc:	6f 91       	pop	r22
+ 6be:	5f 91       	pop	r21
+ 6c0:	4f 91       	pop	r20
+ 6c2:	3f 91       	pop	r19
+ 6c4:	2f 91       	pop	r18
+ 6c6:	0f 90       	pop	r0
+ 6c8:	0f be       	out	0x3f, r0	; 63
+ 6ca:	0f 90       	pop	r0
+ 6cc:	1f 90       	pop	r1
+ 6ce:	18 95       	reti
+
+000006d0 <i2cGetState>:
+
+eI2cStateType i2cGetState(void)
+{
+	return I2cState;
+ 6d0:	80 91 00 01 	lds	r24, 0x0100
+}
+ 6d4:	08 95       	ret
+
+000006d6 <mcp23008_init>:
+#define MCP23008_BASE_ADDRESS	0x40
+
+u08 mcp23008_data[2];
+
+void mcp23008_init(MCP23008 *obj, u08 address)
+{
+ 6d6:	0f 93       	push	r16
+ 6d8:	1f 93       	push	r17
+ 6da:	df 93       	push	r29
+ 6dc:	cf 93       	push	r28
+ 6de:	0f 92       	push	r0
+ 6e0:	cd b7       	in	r28, 0x3d	; 61
+ 6e2:	de b7       	in	r29, 0x3e	; 62
+ 6e4:	8c 01       	movw	r16, r24
+	i2cInit();
+ 6e6:	69 83       	std	Y+1, r22	; 0x01
+ 6e8:	0e 94 ff 00 	call	0x1fe	; 0x1fe <i2cInit>
+	obj->address = MCP23008_BASE_ADDRESS + address;
+ 6ec:	69 81       	ldd	r22, Y+1	; 0x01
+ 6ee:	60 5c       	subi	r22, 0xC0	; 192
+ 6f0:	f8 01       	movw	r30, r16
+ 6f2:	60 83       	st	Z, r22
+}
+ 6f4:	0f 90       	pop	r0
+ 6f6:	cf 91       	pop	r28
+ 6f8:	df 91       	pop	r29
+ 6fa:	1f 91       	pop	r17
+ 6fc:	0f 91       	pop	r16
+ 6fe:	08 95       	ret
+
+00000700 <mcp23008_write_register>:
+	mcp23008_write_register(object,MCP23008_GPIO,object->data);
+}
+
+void mcp23008_write_register( MCP23008 *obj, u08 reg, u08 data)
+{
+	mcp23008_data[0] = reg;
+ 700:	60 93 58 01 	sts	0x0158, r22
+	mcp23008_data[1] = data;
+ 704:	40 93 59 01 	sts	0x0159, r20
+	i2cMasterSendNI(obj->address,2,&mcp23008_data);
+ 708:	fc 01       	movw	r30, r24
+ 70a:	80 81       	ld	r24, Z
+ 70c:	62 e0       	ldi	r22, 0x02	; 2
+ 70e:	48 e5       	ldi	r20, 0x58	; 88
+ 710:	51 e0       	ldi	r21, 0x01	; 1
+ 712:	0e 94 b2 01 	call	0x364	; 0x364 <i2cMasterSendNI>
+}
+ 716:	08 95       	ret
+
+00000718 <mcp23008_write>:
+	i2cInit();
+	obj->address = MCP23008_BASE_ADDRESS + address;
+}
+
+void mcp23008_write(MCP23008 *object)
+{
+ 718:	fc 01       	movw	r30, r24
+	mcp23008_write_register(object,MCP23008_GPIO,object->data);
+ 71a:	69 e0       	ldi	r22, 0x09	; 9
+ 71c:	41 81       	ldd	r20, Z+1	; 0x01
+ 71e:	0e 94 80 03 	call	0x700	; 0x700 <mcp23008_write_register>
+}
+ 722:	08 95       	ret
+
+00000724 <mcp23008_read_register>:
+	mcp23008_data[1] = data;
+	i2cMasterSendNI(obj->address,2,&mcp23008_data);
+}
+
+u08 mcp23008_read_register( MCP23008 *obj, u08 reg)
+{
+ 724:	0f 93       	push	r16
+ 726:	1f 93       	push	r17
+ 728:	cf 93       	push	r28
+ 72a:	df 93       	push	r29
+ 72c:	ec 01       	movw	r28, r24
+	mcp23008_data[0] = reg;
+ 72e:	08 e5       	ldi	r16, 0x58	; 88
+ 730:	11 e0       	ldi	r17, 0x01	; 1
+ 732:	60 93 58 01 	sts	0x0158, r22
+	i2cMasterSendNI(obj->address,1,&mcp23008_data);
+ 736:	88 81       	ld	r24, Y
+ 738:	61 e0       	ldi	r22, 0x01	; 1
+ 73a:	a8 01       	movw	r20, r16
+ 73c:	0e 94 b2 01 	call	0x364	; 0x364 <i2cMasterSendNI>
+	i2cMasterReceiveNI(obj->address,1,&mcp23008_data);
+ 740:	88 81       	ld	r24, Y
+ 742:	61 e0       	ldi	r22, 0x01	; 1
+ 744:	a8 01       	movw	r20, r16
+ 746:	0e 94 f2 01 	call	0x3e4	; 0x3e4 <i2cMasterReceiveNI>
+	return mcp23008_data[0];
+ 74a:	80 91 58 01 	lds	r24, 0x0158
+ 74e:	df 91       	pop	r29
+ 750:	cf 91       	pop	r28
+ 752:	1f 91       	pop	r17
+ 754:	0f 91       	pop	r16
+ 756:	08 95       	ret
+
+00000758 <__divmodsi4>:
+ 758:	97 fb       	bst	r25, 7
+ 75a:	09 2e       	mov	r0, r25
+ 75c:	05 26       	eor	r0, r21
+ 75e:	0e d0       	rcall	.+28     	; 0x77c <__divmodsi4_neg1>
+ 760:	57 fd       	sbrc	r21, 7
+ 762:	04 d0       	rcall	.+8      	; 0x76c <__divmodsi4_neg2>
+ 764:	14 d0       	rcall	.+40     	; 0x78e <__udivmodsi4>
+ 766:	0a d0       	rcall	.+20     	; 0x77c <__divmodsi4_neg1>
+ 768:	00 1c       	adc	r0, r0
+ 76a:	38 f4       	brcc	.+14     	; 0x77a <__divmodsi4_exit>
+
+0000076c <__divmodsi4_neg2>:
+ 76c:	50 95       	com	r21
+ 76e:	40 95       	com	r20
+ 770:	30 95       	com	r19
+ 772:	21 95       	neg	r18
+ 774:	3f 4f       	sbci	r19, 0xFF	; 255
+ 776:	4f 4f       	sbci	r20, 0xFF	; 255
+ 778:	5f 4f       	sbci	r21, 0xFF	; 255
+
+0000077a <__divmodsi4_exit>:
+ 77a:	08 95       	ret
+
+0000077c <__divmodsi4_neg1>:
+ 77c:	f6 f7       	brtc	.-4      	; 0x77a <__divmodsi4_exit>
+ 77e:	90 95       	com	r25
+ 780:	80 95       	com	r24
+ 782:	70 95       	com	r23
+ 784:	61 95       	neg	r22
+ 786:	7f 4f       	sbci	r23, 0xFF	; 255
+ 788:	8f 4f       	sbci	r24, 0xFF	; 255
+ 78a:	9f 4f       	sbci	r25, 0xFF	; 255
+ 78c:	08 95       	ret
+
+0000078e <__udivmodsi4>:
+ 78e:	a1 e2       	ldi	r26, 0x21	; 33
+ 790:	1a 2e       	mov	r1, r26
+ 792:	aa 1b       	sub	r26, r26
+ 794:	bb 1b       	sub	r27, r27
+ 796:	fd 01       	movw	r30, r26
+ 798:	0d c0       	rjmp	.+26     	; 0x7b4 <__udivmodsi4_ep>
+
+0000079a <__udivmodsi4_loop>:
+ 79a:	aa 1f       	adc	r26, r26
+ 79c:	bb 1f       	adc	r27, r27
+ 79e:	ee 1f       	adc	r30, r30
+ 7a0:	ff 1f       	adc	r31, r31
+ 7a2:	a2 17       	cp	r26, r18
+ 7a4:	b3 07       	cpc	r27, r19
+ 7a6:	e4 07       	cpc	r30, r20
+ 7a8:	f5 07       	cpc	r31, r21
+ 7aa:	20 f0       	brcs	.+8      	; 0x7b4 <__udivmodsi4_ep>
+ 7ac:	a2 1b       	sub	r26, r18
+ 7ae:	b3 0b       	sbc	r27, r19
+ 7b0:	e4 0b       	sbc	r30, r20
+ 7b2:	f5 0b       	sbc	r31, r21
+
+000007b4 <__udivmodsi4_ep>:
+ 7b4:	66 1f       	adc	r22, r22
+ 7b6:	77 1f       	adc	r23, r23
+ 7b8:	88 1f       	adc	r24, r24
+ 7ba:	99 1f       	adc	r25, r25
+ 7bc:	1a 94       	dec	r1
+ 7be:	69 f7       	brne	.-38     	; 0x79a <__udivmodsi4_loop>
+ 7c0:	60 95       	com	r22
+ 7c2:	70 95       	com	r23
+ 7c4:	80 95       	com	r24
+ 7c6:	90 95       	com	r25
+ 7c8:	9b 01       	movw	r18, r22
+ 7ca:	ac 01       	movw	r20, r24
+ 7cc:	bd 01       	movw	r22, r26
+ 7ce:	cf 01       	movw	r24, r30
+ 7d0:	08 95       	ret
+
+000007d2 <_exit>:
+ 7d2:	f8 94       	cli
+
+000007d4 <__stop_program>:
+ 7d4:	ff cf       	rjmp	.-2      	; 0x7d4 <__stop_program>
