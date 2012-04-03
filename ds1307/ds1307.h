@@ -17,7 +17,7 @@
 
 typedef enum {
 	MeridianAM,
-	MeridianPM
+	MeridianPM,
 	MeridianMilitary
 } Meridian;
 

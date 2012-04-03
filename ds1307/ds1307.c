@@ -8,6 +8,7 @@
 #include "ds1307.h"
 #include "i2cmaster.h"
 #include <util/delay.h>
+#include "global.h"
 
 //
 //  DS1307 register addresses
@@ -50,7 +51,7 @@ void ds1307_read_date(DS1307Date *date)
     date->second = _ds1307_bcd_2_dec( i2c_readAck() & 0x7F );
     date->minute = _ds1307_bcd_2_dec( i2c_readAck() );
 	
-	u08 temp_hour = i2c_readAck()
+	u08 temp_hour = i2c_readAck();
 	
     date->hour = _ds1307_bcd_2_dec( i2c_readAck() );
     date->day = _ds1307_bcd_2_dec( i2c_readAck() );
@@ -64,7 +65,7 @@ void ds1307_read_date(DS1307Date *date)
 	if( CHECKBIT(temp_hour,6) )
 	{
 		//	if bit 6 of hour is high we need to find the AM/PM
-		date->meridian = ( CHECKBIT(temp_hour),5 )?MeridianPM:MeridianAM;
+		date->meridian = ( CHECKBIT(temp_hour,5) )?MeridianPM:MeridianAM;
 		//	mask the upper 3 bits
 		date->hour = _ds1307_bcd_2_dec( temp_hour & 0b00011111 );
 	}
