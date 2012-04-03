@@ -5,9 +5,13 @@
  *  Author: Owner
  */ 
 
-#import "global.h"
-#import "seriallcd.h"
-#import <avr/io.h>
+#include "global.h"
+#include "seriallcd.h"
+#include <avr/io.h>
+
+#include "USART.h"
+#include "akd_usart_2.h"
+
 
 #define BAUD 9600
 #include <util/setbaud.h>
@@ -35,67 +39,79 @@
 /* FUNCTION PROTOTYPES                                                  */
 /************************************************************************/
 
-void _usart_transmit_byte(unsigned char data);
+void _usart_transmit_byte(SerialLCD *lcd, unsigned char data);
 
 
 
-void serial_lcd_init()
+void serial_lcd_init(SerialLCD *lcd)
 {
-	UBRRH = UBRRH_VALUE;
-	UBRRL = UBRRL_VALUE;
-	UCSRB = (1<<RXEN) | (1<<TXEN);
-	UCSRC = (1<<UCSZ1) | (1<<UCSZ0);
+	if( lcd->uart == SerialLCDUARTSingle ) {
+		u16 baudval = UART_BAUD_SELECT(lcd->baudrate,F_CPU);
+		USART0_Init(baudval);
+	}
+	else {
+		usart2_init_baudrate(lcd->uart,lcd->baudrate);
+	}
 }
 
-void serial_lcd_clear_screen(void)
+void serial_lcd_clear_screen(SerialLCD *lcd)
 {
-	_usart_transmit_byte(SERIAL_LCD_COMMAND);
-	_usart_transmit_byte(SERIAL_LCD_CLEAR_SCREEN);
+	_usart_transmit_byte(lcd,SERIAL_LCD_COMMAND);
+	_usart_transmit_byte(lcd,SERIAL_LCD_CLEAR_SCREEN);
 }
 
-void serial_lcd_set_line( u08 line)
+void serial_lcd_set_line(SerialLCD *lcd, u08 line)
 {
 	if( line<1 || line>2 )
 		return;
-	_usart_transmit_byte(SERIAL_LCD_COMMAND);
-	_usart_transmit_byte( (line==1)?SERIAL_LCD_LINE_ONE:SERIAL_LCD_LINE_TWO);
+	_usart_transmit_byte(lcd,SERIAL_LCD_COMMAND);
+	_usart_transmit_byte(lcd,(line==1)?SERIAL_LCD_LINE_ONE:SERIAL_LCD_LINE_TWO);
 }
 
-void serial_lcd_set_backlight( BOOL isON)
+void serial_lcd_set_backlight(SerialLCD *lcd,BOOL isON)
 {
-	_usart_transmit_byte(SERIAL_LCD_BACKLIGHT_COMMAND);
-	_usart_transmit_byte((isON)?SERIAL_LCD_BACKLIGHT_ON:SERIAL_LCD_BACKLIGHT_OFF);
+	_usart_transmit_byte(lcd,SERIAL_LCD_BACKLIGHT_COMMAND);
+	_usart_transmit_byte(lcd,(isON)?SERIAL_LCD_BACKLIGHT_ON:SERIAL_LCD_BACKLIGHT_OFF);
 }
 
-void serial_lcd_set_position( u08 row, u08 col)
+void serial_lcd_set_position(SerialLCD *lcd, u08 row, u08 col)
 {
-	_usart_transmit_byte(SERIAL_LCD_COMMAND);
-	_usart_transmit_byte(col + row * 64 + 0x80);
+	_usart_transmit_byte(lcd,SERIAL_LCD_COMMAND);
+	_usart_transmit_byte(lcd,col + row * 64 + 0x80);
 }
 
-void serial_lcd_set_cursor_type_state(CursorType type, BOOL state)
+void serial_lcd_set_cursor_type_state(SerialLCD *lcd, CursorType type, BOOL state)
 {
-	_usart_transmit_byte(SERIAL_LCD_BACKLIGHT_COMMAND);
+	_usart_transmit_byte(lcd,SERIAL_LCD_BACKLIGHT_COMMAND);
 	if( !state )
-		_usart_transmit_byte(SERIAL_LCD_BOX_CURSOR_OFF);
+		_usart_transmit_byte(lcd,SERIAL_LCD_BOX_CURSOR_OFF);
 	else
 		if( type == CursorTypeBox )
-			_usart_transmit_byte(SERIAL_LCD_BOX_CURSOR_ON);
+			_usart_transmit_byte(lcd,SERIAL_LCD_BOX_CURSOR_ON);
 		else
-			_usart_transmit_byte(SERIAL_LCD_UNDERLINE_CURSOR_ON);
+			_usart_transmit_byte(lcd,SERIAL_LCD_UNDERLINE_CURSOR_ON);
 }
 
-void serial_lcd_write_string( char *str )
+void serial_lcd_write_string(SerialLCD *lcd, char *str )
 {
 	u08 index = 0;
 	while( str[index] )
 	{
-		_usart_transmit_byte( str[index++] );
+		_usart_transmit_byte(lcd,str[index++] );
 	}
 }
 
-void _usart_transmit_byte(unsigned char data)
+void serial_lcd_write_byte(SerialLCD *lcd, char data )
 {
-	while( !(UCSRA & (1<<UDRE)));
-	UDR = data;
+	_usart_transmit_byte(lcd,data);
+}
+
+void _usart_transmit_byte(SerialLCD *lcd, unsigned char data)
+{
+	if( lcd->uart == SerialLCDUARTSingle ) {
+		USART0_Transmit(data);
+	}
+	else {
+		usart2_transmit(lcd->uart, data);
+	}
 }
